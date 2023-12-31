@@ -20,7 +20,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bgcol);
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #f0f0f0
+  ); /* Subtle white gradient */
+  color: #333; /* Text color */
   text-align: center;
   margin: 20px;
 }
@@ -42,7 +47,7 @@ h1 {
 }
 
 #puzzle-container {
-  margin-top: 66px;
+  margin-top: 98px;
   position: relative;
   width: 50vh;
   height: 50vh;
