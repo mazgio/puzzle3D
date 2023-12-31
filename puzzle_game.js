@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
     puzzleContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
-    const numbers = Array.from({ length: totalPieces }, (_, i) => i + 1); // Adjusted to start from 1
+    const numbers = Array.from({ length: totalPieces - 1 }, (_, i) => i + 1); // Start from 1 and go up to (totalPieces - 1)
 
     for (let i = 0; i < totalPieces; i++) {
       const piece = document.createElement('div');
