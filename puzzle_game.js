@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateNumberStyles(); // Add this line to update number styles
 
-
     gridSizeButtons.forEach((button) => {
       button.classList.remove('active');
       if (parseInt(button.dataset.size) === gridSize) {
@@ -170,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
     element2.classList.toggle('empty');
 
     updateNumberStyles(); // Add this line to update number styles
-
   }
 
   function isPuzzleSolved() {
