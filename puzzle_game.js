@@ -5,6 +5,45 @@ document.addEventListener('DOMContentLoaded', function () {
   let gridSize = parseInt(localStorage.getItem('gridSize')) || 3;
   let emptyIndex = parseInt(localStorage.getItem('emptyIndex')) || gridSize * gridSize - 1;
 
+  let touchStartX, touchStartY, touchEndX, touchEndY;
+
+  puzzleContainer.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+
+  puzzleContainer.addEventListener('touchend', function (e) {
+    touchEndX = e.changedTouches[0].clientX;
+    touchEndY = e.changedTouches[0].clientY;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    const threshold = 50; // Adjust the threshold based on your preference
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      // Horizontal swipe
+      if (dx > threshold) {
+        // Swipe to the right
+        movePiece(emptyIndex - 1);
+      } else if (dx < -threshold) {
+        // Swipe to the left
+        movePiece(emptyIndex + 1);
+      }
+    } else {
+      // Vertical swipe
+      if (dy > threshold) {
+        // Swipe down
+        movePiece(emptyIndex - gridSize);
+      } else if (dy < -threshold) {
+        // Swipe up
+        movePiece(emptyIndex + gridSize);
+      }
+    }
+  }
+
   function createPuzzle() {
     puzzleContainer.innerHTML = '';
 
