@@ -110,37 +110,41 @@ button {
   color: #fff;
 }
 
-#difficulty-container {
+#difficulty_container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-around; /* Add space-around to distribute buttons evenly */
+  width: 50vh;
+  height: 10vh;
   background-color: var(--darkcol);
   border-radius: 8px;
-  padding: 10px;
-  margin-top: 50px;
+  margin-top: 20px; /* Adjusted margin for better spacing */
 }
 
-.difficulty-button {
-  background-color: var(--mcol2);
-  color: var(--whitecol);
+.grid-size-button {
+  flex-grow: 1;
+  background-color: inherit;
+  color: var(--mcol2);
   text-align: center;
-  font-size: 16px;
+  font-size: 3vh;
   font-weight: bold;
-  padding: 15px 20px;
-  margin: 10px;
-  border-radius: 6px;
-  border: none;
+  padding-top: 5%;
+  margin: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: font-size 0.3s;
+  border: 2px solid var(--mcol2); /* Add border */
+  border-radius: 8px; /* Add border radius */
 }
 
-.difficulty-button:hover {
-  background-color: var(--mcol1);
-  transform: scale(1.1);
+.grid-size-button:hover {
+  opacity: 0.8;
+  font-size: 3.5vh;
+  background-color: var(--darkcol); /* Change background on hover */
 }
 
-.difficulty-button.active {
+.grid-size-button.active {
   background-color: var(--mcol0);
+  color: #fff;
 }
 
 @media only screen and (max-width: 600px) {
