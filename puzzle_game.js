@@ -2,35 +2,35 @@ document.addEventListener('DOMContentLoaded', function () {
   const puzzleContainer = document.getElementById('puzzle-container');
   const gridSizeButtons = document.querySelectorAll('.grid-size-button');
 
-  let gridSize = 3; // Default grid size
-  let emptyIndex = gridSize * gridSize - 1; // Declare and initialize emptyIndex
+  let gridSize = parseInt(localStorage.getItem('gridSize')) || 3; // Retrieve gridSize from localStorage
+  let emptyIndex = parseInt(localStorage.getItem('emptyIndex')) || gridSize * gridSize - 1;
 
   function createPuzzle() {
     puzzleContainer.innerHTML = '';
 
     const totalPieces = gridSize * gridSize;
-    const pieceSize = 100 / gridSize; // Adjusted calculation
+    const pieceSize = 100 / gridSize;
 
     puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
     puzzleContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
-    const numbers = Array.from({ length: gridSize * gridSize - 1 }, (_, i) => i + 1); // Array with numbers
+    const numbers = Array.from({ length: totalPieces }, (_, i) => i + 1); // Adjusted to start from 1
 
     for (let i = 0; i < totalPieces; i++) {
       const piece = document.createElement('div');
       piece.className = 'puzzle-piece';
-      piece.style.fontSize = `${6 / gridSize}vh`; // Adjusted font size
+      piece.style.fontSize = `${6 / gridSize}vh`;
 
       const row = Math.floor(i / gridSize) + 1;
       const col = (i % gridSize) + 1;
 
       if (i === emptyIndex) {
         piece.classList.add('empty');
-        piece.textContent = ''; // Ensure empty piece has no number
+        piece.textContent = '';
       } else {
         const randomIndex = Math.floor(Math.random() * numbers.length);
         piece.textContent = numbers[randomIndex];
-        numbers.splice(randomIndex, 1); // Remove used number
+        numbers.splice(randomIndex, 1);
       }
 
       piece.addEventListener('click', () => movePiece(i));
@@ -42,14 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function randomize(iterationCount) {
     for (let i = 0; i < iterationCount; i++) {
       const adjacentPieces = getAdjacentPieces(emptyIndex);
-      if (adjacentPieces.length > 0) {
-        const randomIndex = adjacentPieces[Math.floor(Math.random() * adjacentPieces.length)];
-        swapElements(puzzleContainer.children[randomIndex], puzzleContainer.children[emptyIndex]);
-        emptyIndex = randomIndex;
-      }
+      const randomIndex = adjacentPieces[Math.floor(Math.random() * adjacentPieces.length)];
+      swapElements(puzzleContainer.children[randomIndex], puzzleContainer.children[emptyIndex]);
+      emptyIndex = randomIndex;
     }
   }
-
 
   function getAdjacentPieces(index) {
     const row = Math.floor(index / gridSize);
@@ -61,28 +58,32 @@ document.addEventListener('DOMContentLoaded', function () {
     if (col > 0) adjacentPieces.push(index - 1); // Left
     if (col < gridSize - 1) adjacentPieces.push(index + 1); // Right
 
-    // Filter out the non-empty adjacent pieces
     return adjacentPieces.filter((adjacentIndex) => {
       const piece = puzzleContainer.children[adjacentIndex];
       return piece.classList.contains('empty');
     });
   }
 
-
   function movePiece(index) {
     const piece = puzzleContainer.children[index];
 
     if (isAdjacent(index, emptyIndex)) {
-      piece.classList.add('clicked');
-      setTimeout(() => {
-        piece.classList.remove('clicked');
-      }, 300);
+      if (!piece.classList.contains('empty')) {
+        piece.classList.add('clicked');
+        setTimeout(() => {
+          piece.classList.remove('clicked');
+        }, 300);
 
-      swapElements(piece, puzzleContainer.children[emptyIndex]);
-      emptyIndex = index; // Update emptyIndex after the move
+        swapElements(piece, puzzleContainer.children[emptyIndex]);
+        emptyIndex = index; // Update emptyIndex
 
-      if (isPuzzleSolved()) {
-        alert('Congratulations! Puzzle Solved!');
+        if (isPuzzleSolved()) {
+          alert('Congratulations! Puzzle Solved!');
+        }
+
+        // Save the current state to localStorage
+        localStorage.setItem('gridSize', gridSize);
+        localStorage.setItem('emptyIndex', emptyIndex);
       }
     }
   }
@@ -98,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
       (Math.abs(col1 - col2) === 1 && row1 === row2)
     );
   }
-
 
   function swapElements(element1, element2) {
     const temp = element1.textContent;
@@ -121,9 +121,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function setGridSize(size) {
     gridSize = size;
-    emptyIndex = gridSize * gridSize - 1; // Reset empty index
+    emptyIndex = gridSize * gridSize - 1;
     createPuzzle();
-    randomize(100); // You can adjust the iteration count as needed
+    randomize(100);
+    localStorage.setItem('gridSize', gridSize); // Save gridSize to localStorage
+    localStorage.setItem('emptyIndex', emptyIndex); // Save emptyIndex to localStorage
   }
 
   gridSizeButtons.forEach((button) => {
@@ -135,5 +137,5 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   createPuzzle();
-  randomize(100); // Randomize once on page load
+  randomize(100);
 });
