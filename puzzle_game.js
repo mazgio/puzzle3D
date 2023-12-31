@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const puzzleContainer = document.getElementById('puzzle-container');
   const gridSizeButtons = document.querySelectorAll('.grid-size-button');
 
-  let gridSize = parseInt(localStorage.getItem('gridSize')) || 3; // Retrieve gridSize from localStorage
+  let gridSize = parseInt(localStorage.getItem('gridSize')) || 3;
   let emptyIndex = parseInt(localStorage.getItem('emptyIndex')) || gridSize * gridSize - 1;
 
   function createPuzzle() {
@@ -19,30 +19,45 @@ document.addEventListener('DOMContentLoaded', function () {
     for (let i = 0; i < totalPieces; i++) {
       const piece = document.createElement('div');
       piece.className = 'puzzle-piece';
-      piece.style.fontSize = `${6 / gridSize}vh`;
+      piece.style.fontSize = `${8 / gridSize}vh`;
 
       const row = Math.floor(i / gridSize) + 1;
       const col = (i % gridSize) + 1;
 
+      const numberContainer = document.createElement('div');
+      numberContainer.className = 'number-container';
+      const number = document.createElement('span');
+      number.className = 'number';
+
       if (i === emptyIndex) {
         piece.classList.add('empty');
-        piece.textContent = '';
+        number.textContent = ''; // For empty space
       } else {
         const randomIndex = Math.floor(Math.random() * numbers.length);
-        piece.textContent = numbers[randomIndex];
+        number.textContent = numbers[randomIndex];
         numbers.splice(randomIndex, 1);
       }
 
+      numberContainer.appendChild(number);
+      piece.appendChild(numberContainer);
       piece.addEventListener('click', () => movePiece(i));
-
       puzzleContainer.appendChild(piece);
     }
+    updateNumberStyles(); // Add this line to update number styles
+
 
     gridSizeButtons.forEach((button) => {
       button.classList.remove('active');
       if (parseInt(button.dataset.size) === gridSize) {
         button.classList.add('active');
       }
+    });
+  }
+
+  function updateNumberStyles() {
+    // Loop through puzzle pieces and update number styles
+    puzzleContainer.querySelectorAll('.number').forEach((number) => {
+      number.style.fontSize = `${8 / gridSize}vh`;
     });
   }
 
@@ -114,6 +129,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     element1.classList.toggle('empty');
     element2.classList.toggle('empty');
+
+    updateNumberStyles(); // Add this line to update number styles
+
   }
 
   function isPuzzleSolved() {

@@ -53,8 +53,8 @@ h1 {
   height: 50vh;
   background-color: var(--darkcol);
   border-radius: 8px;
-  border: 9px solid var(--mcol0);
-  box-shadow: 0px 8px 0px var(--mcol0);
+  border: 9px solid var(--darkcol);
+  box-shadow: 0px 8px 0px var(--darkcol);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
@@ -63,8 +63,8 @@ h1 {
 .puzzle-piece {
   width: 100%;
   height: 100%;
-  background-color: var(--txtcol1);
-  color: var(--whitecol);
+  background-color: var(--bgcol);
+  color: var(--mcol0);
   font-size: 10vh;
   font-weight: bold;
   text-align: center;
@@ -75,6 +75,41 @@ h1 {
   user-select: none;
   transition: transform 0.3s;
   border-radius: 8px;
+}
+
+.puzzle-piece .number {
+  font-size: 3.5em; /* Adjust the font size to your preference */
+  border-radius: 15px; /* Rounded corners for a nice form */
+  transition: transform 0.3s ease-in-out;
+  font-weight: bold; /* Make the text bold for emphasis */
+  font-family: "Arial", sans-serif; /* Choose a suitable font-family */
+  box-shadow: 100 20px 4px rgba(14, 53, 182, 0.1); /* Add a subtle box shadow */
+}
+
+.puzzle-piece.clicked .number {
+  color: #3498db; /* Change color when clicked, you can choose a different color */
+}
+
+.puzzle-piece:not(.empty):hover .number {
+  color: #44b7f7; /* Change color on hover, you can choose a different color */
+  transform: scale(1.1);
+}
+
+/* Add a pulsing effect for the clicked piece */
+.puzzle-piece.clicked:not(.empty) {
+  animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .puzzle-piece.empty {
