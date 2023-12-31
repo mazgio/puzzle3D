@@ -17,13 +17,40 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0; /* Background color for the body */
   text-align: center;
   margin: 20px;
   background-color: var(--bgcol);
 }
 
+.cool-header {
+  background-color: #3498db; /* Header background color */
+  color: #fff; /* Header text color */
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+  margin-top: 50px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  /* Border-bottom with linear gradient */
+  border-bottom-left-radius: 80px 80px;
+  border-bottom-right-radius: 100px 80px;
+  border-top-right-radius: 99px 127px;
+
+  background-image: linear-gradient(to right, transparent 50%, #fff 50%);
+  background-size: 200% 100%;
+  transition: background-position 0.3s ease;
+}
+
+h1 {
+  font-size: 2em; /* Header font size */
+  margin: 0;
+}
+
 #puzzle-container {
+  margin-top: 66px;
   position: relative;
   width: 50vh;
   height: 50vh;
@@ -75,6 +102,7 @@ button {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 .active {
@@ -89,7 +117,7 @@ button {
   background-color: var(--darkcol);
   border-radius: 8px;
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .difficulty-button {
@@ -100,6 +128,7 @@ button {
   font-weight: bold;
   padding: 15px 20px;
   margin: 10px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -115,6 +144,14 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
+  .cool-header {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
   #difficulty-container {
     flex-direction: column;
     align-items: stretch;
@@ -122,6 +159,7 @@ button {
 
   .difficulty-button {
     font-size: 14px;
+    border-radius: 6px;
   }
 }
 
@@ -142,7 +180,7 @@ button {
 
   #difficulty_container {
     width: 90vw;
-    margin-top: 20px; /* Adjusted margin for the difficulty container */
+    margin-top: 44px; /* Adjusted margin for the difficulty container */
   }
 
   .difficulty_button {
