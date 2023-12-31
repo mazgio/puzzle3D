@@ -6,7 +6,7 @@
 }
 
 :root {
-  --bgcol: #37474f;
+  --bgcol: #f0f0f0;
   --mcol0: #29b6f6;
   --mcol1: #2196f3;
   --mcol2: #1976d2;
@@ -20,32 +20,24 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f0f0; /* Background color for the body */
+  background-color: var(--bgcol);
   text-align: center;
   margin: 20px;
-  background-color: var(--bgcol);
 }
 
 .cool-header {
-  background-color: #3498db; /* Header background color */
-  color: #fff; /* Header text color */
+  background-color: var(--mcol0);
+  color: #fff;
   text-align: center;
   padding: 20px;
   margin: 0;
   margin-top: 50px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
-  /* Border-bottom with linear gradient */
-  border-bottom-left-radius: 80px 80px;
-  border-bottom-right-radius: 100px 80px;
-  border-top-right-radius: 99px 127px;
-
-  background-image: linear-gradient(to right, transparent 50%, #fff 50%);
-  background-size: 200% 100%;
-  transition: background-position 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
 h1 {
-  font-size: 2em; /* Header font size */
+  font-size: 2em;
   margin: 0;
 }
 
@@ -59,13 +51,13 @@ h1 {
   border: 9px solid var(--mcol0);
   box-shadow: 0px 8px 0px var(--mcol0);
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default to 3x3 */
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
 .puzzle-piece {
-  width: 103.4%;
-  height: 103.4%;
+  width: 100%;
+  height: 100%;
   background-color: var(--txtcol1);
   color: var(--whitecol);
   font-size: 10vh;
@@ -76,18 +68,17 @@ h1 {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.3s; /* Added transition for transform property */
+  transition: transform 0.3s;
+  border-radius: 8px;
 }
 
 .puzzle-piece.empty {
-  background-color: var(
-    --darkcol
-  ); /* Change the background color for the empty piece */
-  color: transparent; /* Make the text transparent */
+  background-color: var(--darkcol);
+  color: transparent;
 }
 
 .clicked {
-  transition: none; /* Disable transition for clicked state */
+  transition: none;
 }
 
 label {
@@ -113,11 +104,11 @@ button {
 #difficulty_container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around; /* Add space-around to distribute buttons evenly */
+  justify-content: space-around;
   width: 50vh;
   height: 10vh;
   border-radius: 8px;
-  margin-top: 20px; /* Adjusted margin for better spacing */
+  margin-top: 20px;
 }
 
 .grid-size-button-container {
@@ -149,6 +140,7 @@ button {
   background-color: var(--mcol0);
   color: #fff;
 }
+
 @media only screen and (max-width: 600px) {
   .cool-header {
     padding: 15px;
@@ -169,27 +161,26 @@ button {
   }
 }
 
-/* Media query for iPhone 12 */
 @media only screen and (max-width: 390px) {
   #puzzle-container {
     width: 90vw;
-    height: 90vw; /* Adjusted height for a square puzzle on smaller screens */
+    height: 90vw;
   }
 
   .puzzle-piece {
-    font-size: 5vw; /* Adjusted font size proportionally for smaller screens */
+    font-size: 5vw;
   }
 
   .number {
-    font-size: 3vw; /* Adjusted font size for the number */
+    font-size: 3vw;
   }
 
   #difficulty_container {
     width: 90vw;
-    margin-top: 44px; /* Adjusted margin for the difficulty container */
+    margin-top: 44px;
   }
 
   .difficulty_button {
-    font-size: 4vw; /* Adjusted font size for difficulty buttons */
+    font-size: 4vw;
   }
 }
