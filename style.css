@@ -17,67 +17,135 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 15vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
   background-color: var(--bgcol);
 }
 
-#puzzle_container {
+#puzzle-container {
   position: relative;
   width: 50vh;
   height: 50vh;
   background-color: var(--darkcol);
   border-radius: 8px;
-  border: 1px solid var(--mcol0);
+  border: 9px solid var(--mcol0);
   box-shadow: 0px 8px 0px var(--mcol0);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default to 3x3 */
+  gap: 8px;
 }
 
-.puzzle_block {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 33.4%;
-  height: 33.4%;
+.puzzle-piece {
+  width: 103.4%;
+  height: 103.4%;
   background-color: var(--txtcol1);
   color: var(--whitecol);
   font-size: 10vh;
   font-weight: bold;
   text-align: center;
-  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   user-select: none;
-  transition: left 0.3s, top 0.3s;
+  transition: transform 0.3s; /* Added transition for transform property */
 }
 
-/*difficulty container*/
-#difficulty_container {
+.puzzle-piece.empty {
+  background-color: var(
+    --darkcol
+  ); /* Change the background color for the empty piece */
+  color: transparent; /* Make the text transparent */
+}
+
+.clicked {
+  transition: none; /* Disable transition for clicked state */
+}
+
+label {
+  margin-right: 5px;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+#difficulty-container {
   display: flex;
-  flex-direction: row;
-  width: 50vh;
-  height: 10vh;
+  justify-content: space-around;
+  align-items: center;
   background-color: var(--darkcol);
   border-radius: 8px;
-  margin-top: 22px;
+  padding: 10px;
+  margin-top: 20px;
 }
-.difficulty_button {
-  flex-grow: 1;
-  background-color: inherit;
-  color: var(--mcol2);
+
+.difficulty-button {
+  background-color: var(--mcol2);
+  color: var(--whitecol);
   text-align: center;
-  font-size: 3vh;
+  font-size: 16px;
   font-weight: bold;
-  padding-top: 5%;
-  margin: 4px;
+  padding: 15px 20px;
+  margin: 10px;
+  border: none;
   cursor: pointer;
-  transition: font-size 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
-.difficulty_button:hover {
-  opacity: 0.8;
-  font-size: 3.5vh;
+
+.difficulty-button:hover {
+  background-color: var(--mcol1);
+  transform: scale(1.1);
 }
-.difficulty_button.active {
-  background-color: inherit;
-  color: var(--mcol0);
+
+.difficulty-button.active {
+  background-color: var(--mcol0);
+}
+
+@media only screen and (max-width: 600px) {
+  #difficulty-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .difficulty-button {
+    font-size: 14px;
+  }
+}
+
+/* Media query for iPhone 12 */
+@media only screen and (max-width: 390px) {
+  #puzzle-container {
+    width: 90vw;
+    height: 90vw; /* Adjusted height for a square puzzle on smaller screens */
+  }
+
+  .puzzle-piece {
+    font-size: 5vw; /* Adjusted font size proportionally for smaller screens */
+  }
+
+  .number {
+    font-size: 3vw; /* Adjusted font size for the number */
+  }
+
+  #difficulty_container {
+    width: 90vw;
+    margin-top: 20px; /* Adjusted margin for the difficulty container */
+  }
+
+  .difficulty_button {
+    font-size: 4vw; /* Adjusted font size for difficulty buttons */
+  }
 }

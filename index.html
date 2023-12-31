@@ -8,23 +8,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="puzzle_container">
-      <div class="puzzle_block">1</div>
-
-      <div class="puzzle_block">2</div>
-      <div class="puzzle_block">3</div>
-      <div class="puzzle_block">4</div>
-      <div class="puzzle_block">5</div>
-
-      <div class="puzzle_block">6</div>
-      <div class="puzzle_block">7</div>
-      <div class="puzzle_block">8</div>
-    </div>
+    <div id="puzzle-container"></div>
     <div id="difficulty_container">
-      <div class="difficulty_button active">EASY</div>
-      <div class="difficulty_button">MEDIUM</div>
-      <div class="difficulty_button">HARD</div>
-    </div>
-    <script type="module" src="puzzle.js"></script>
+      <button class="grid-size-button active" data-size="3">3x3</button>
+      <button class="grid-size-button" data-size="4">4x4</button>
+      <button class="grid-size-button" data-size="5">5x5</button>
+    </div> <!-- Close the difficulty_container div -->
+    <script src="puzzle_game.js"></script>
   </body>
 </html>
