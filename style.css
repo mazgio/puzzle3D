@@ -116,37 +116,39 @@ button {
   justify-content: space-around; /* Add space-around to distribute buttons evenly */
   width: 50vh;
   height: 10vh;
-  background-color: var(--darkcol);
   border-radius: 8px;
   margin-top: 20px; /* Adjusted margin for better spacing */
 }
 
+.grid-size-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .grid-size-button {
-  flex-grow: 1;
-  background-color: inherit;
+  background-color: var(--darkcol);
   color: var(--mcol2);
   text-align: center;
   font-size: 3vh;
   font-weight: bold;
-  padding-top: 5%;
+  padding: 10px;
   margin: 4px;
   cursor: pointer;
   transition: font-size 0.3s;
-  border: 2px solid var(--mcol2); /* Add border */
-  border-radius: 8px; /* Add border radius */
+  border: 2px solid var(--mcol2);
+  border-radius: 8px;
 }
 
 .grid-size-button:hover {
   opacity: 0.8;
   font-size: 3.5vh;
-  background-color: var(--darkcol); /* Change background on hover */
 }
 
 .grid-size-button.active {
   background-color: var(--mcol0);
   color: #fff;
 }
-
 @media only screen and (max-width: 600px) {
   .cool-header {
     padding: 15px;
