@@ -63,7 +63,7 @@ h1 {
 .puzzle-piece {
   width: 100%;
   height: 100%;
-  background-color: var(--bgcol);
+  background-color: var(--whitecol);
   color: var(--mcol0);
   font-size: 10vh;
   font-weight: bold;
