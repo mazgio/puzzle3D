@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       puzzleContainer.appendChild(piece);
     }
+
+    gridSizeButtons.forEach((button) => {
+      button.classList.remove('active');
+      if (parseInt(button.dataset.size) === gridSize) {
+        button.classList.add('active');
+      }
+    });
   }
 
   function randomize(iterationCount) {
@@ -122,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function setGridSize(size) {
     gridSize = size;
     emptyIndex = gridSize * gridSize - 1;
-    createPuzzle();
-    randomize(100);
     localStorage.setItem('gridSize', gridSize); // Save gridSize to localStorage
     localStorage.setItem('emptyIndex', emptyIndex); // Save emptyIndex to localStorage
+    createPuzzle();
+    randomize(100);
   }
 
   gridSizeButtons.forEach((button) => {
