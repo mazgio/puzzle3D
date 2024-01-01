@@ -27,7 +27,8 @@ body {
   ); /* Subtle white gradient */
   color: #333; /* Text color */
   text-align: center;
-  margin: 20px;
+  margin: 10px;
+  overflow: hidden; /* Hide scrollbars */
 }
 
 .cool-header {
@@ -36,7 +37,7 @@ body {
   text-align: center;
   padding: 20px;
   margin: 0;
-  margin-top: 50px;
+  margin-top: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
@@ -141,7 +142,7 @@ button {
 }
 
 #difficulty_container {
-  margin: 20px auto; /* Center the difficulty container horizontally and add top margin */
+  margin: 10px auto; /* Center the difficulty container horizontally and add top margin */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -204,7 +205,7 @@ button {
 
   #difficulty_container {
     width: 90vw;
-    margin-top: 44px;
+    margin-top: 24px;
   }
 
   .difficulty_button {
